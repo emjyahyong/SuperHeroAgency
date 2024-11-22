@@ -18,6 +18,16 @@
                 </select>
             </div>
             <div class="col">
+                <select name="power" class="form-control">
+                    <option value="">Filtrer par pouvoir</option>
+                    {% for power in powers %}
+                        <option value="{{ power.name }}" {{ app.request.query.get('power') == power.name ? 'selected' : '' }}>
+                            {{ power.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
                 <button type="submit" class="btn btn-secondary">Filtrer</button>
             </div>
         </div>
@@ -30,6 +40,7 @@
                 <th>Nom</th>
                 <th>Alter Ego</th>
                 <th>Niveau d'énergie</th>
+                <th>Pouvoirs</th> {# Nouvelle colonne pour les pouvoirs #}
                 <th>Actions</th>
             </tr>
         </thead>
@@ -41,6 +52,15 @@
                     <td>{{ super_hero.alterEgo }}</td>
                     <td>{{ super_hero.energyLevel }}</td>
                     <td>
+                        {% if super_hero.powers is not empty %}
+                            {% for power in super_hero.powers %}
+                                {{ power.name }} (Niveau: {{ power.level }})
+                            {% endfor %}
+                        {% else %}
+                            Aucun pouvoir
+                        {% endif %}
+                    </td>
+                    <td>
                         <a href="{{ path('app_super_hero_show', {id: super_hero.id}) }}" class="btn btn-info btn-sm">Voir</a>
                         <a href="{{ path('app_super_hero_edit', {id: super_hero.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
                         <form method="post" action="{{ path('app_super_hero_delete', {id: super_hero.id}) }}" style="display:inline-block;">
@@ -51,7 +71,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">Aucun super-héros trouvé</td>
+                    <td colspan="6">Aucun super-héros trouvé</td>
                 </tr>
             {% endfor %}
         </tbody>

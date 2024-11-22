@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\SuperHero;
 use App\Form\SuperHeroType;
+use App\Repository\PowerRepository;
 use App\Repository\SuperHeroRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,23 +16,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SuperHeroController extends AbstractController
 {
     #[Route('/', name: 'app_super_hero_index', methods: ['GET'])]
-    public function index(SuperHeroRepository $superHeroRepository, Request $request): Response
-    {
-        // Récupérer la valeur du filtre 'available' depuis la requête
-        $available = $request->query->get('available');
+    public function index(SuperHeroRepository $superHeroRepository, PowerRepository $powerRepository, Request $request)
+{
+    // Récupérer les filtres
+    $available = $request->query->get('available');
+    $power = $request->query->get('power');
 
-        // Appliquer le filtre si une valeur est présente
-        if ($available !== null) {
-            $super_heros = $superHeroRepository->findBy(['available' => (bool)$available]);
-        } else {
-            // Sinon, afficher tous les super-héros
-            $super_heros = $superHeroRepository->findAll();
-        }
+    $queryBuilder = $superHeroRepository->createQueryBuilder('s');
 
-        return $this->render('super_hero/index.html.twig', [
-            'super_heros' => $super_heros,
-        ]);
+    if ($available !== null && $available !== '') {
+        $queryBuilder->andWhere('s.available = :available')
+                     ->setParameter('available', $available);
     }
+
+    if ($power !== null && $power !== '') {
+        $queryBuilder->join('s.powers', 'p')
+                     ->andWhere('p.name = :power')
+                     ->setParameter('power', $power);
+    }
+
+    $superHeros = $queryBuilder->getQuery()->getResult();
+    $powers = $powerRepository->findAll(); // Récupérer tous les pouvoirs disponibles
+
+    return $this->render('super_hero/index.html.twig', [
+        'super_heros' => $superHeros,
+        'powers' => $powers, // Passer les pouvoirs au template
+    ]);
+}
 
     #[Route('/new', name: 'app_super_hero_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

@@ -11,6 +11,15 @@
     <p><strong>Biographie :</strong> {{ super_hero.biography }}</p>
     <p><strong>Image :</strong> {{ super_hero.imageName }}</p>
 
+    <h2>Pouvoirs</h2>
+    <ul>
+        {% for power in super_hero.powers %}
+            <li>{{ power.name }} - Niveau: {{ power.level }}</li>
+        {% else %}
+            <li>Aucun pouvoir associé.</li>
+        {% endfor %}
+    </ul>
+
     <a href="{{ path('app_super_hero_edit', {id: super_hero.id}) }}" class="btn btn-warning">Modifier</a>
     <a href="{{ path('app_super_hero_index') }}" class="btn btn-primary">Retour à la liste</a>
 

@@ -42,6 +42,12 @@
             {{ form_errors(form.imageName) }}
         </div>
 
+        <div class="form-group mb-3">
+            {{ form_label(form.powers) }}
+            {{ form_widget(form.powers, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.powers) }}
+        </div>
+
         <button class="btn btn-success">Créer</button>
     {{ form_end(form) }}
 
