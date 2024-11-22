@@ -1,20 +1,45 @@
+{# templates/power/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PowerController!{% endblock %}
+{% block title %}Liste des pouvoirs{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Liste des pouvoirs</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <a href="{{ path('app_power_new') }}" class="btn btn-primary mb-3">Créer un nouveau pouvoir</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Hp Victus/projetssymfony/SuperHeroAgency/src/Controller/PowerController.php</code></li>
-        <li>Your template at <code>C:/Users/Hp Victus/projetssymfony/SuperHeroAgency/templates/power/index.html.twig</code></li>
-    </ul>
-</div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Niveau</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for power in powers %}
+                <tr>
+                    <td>{{ power.id }}</td>
+                    <td>{{ power.name }}</td>
+                    <td>{{ power.description }}</td>
+                    <td>{{ power.level }}</td>
+                    <td>
+                        <a href="{{ path('app_power_show', {id: power.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('app_power_edit', {id: power.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('app_power_delete', {id: power.id}) }}" style="display:inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ power.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun pouvoir trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

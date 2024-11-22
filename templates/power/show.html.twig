@@ -1,0 +1,18 @@
+{# templates/power/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du pouvoir{% endblock %}
+
+{% block body %}
+    <h1>{{ power.name }}</h1>
+    <p><strong>Description : </strong>{{ power.description }}</p>
+    <p><strong>Niveau : </strong>{{ power.level }}</p>
+
+    <a href="{{ path('app_power_edit', {id: power.id}) }}" class="btn btn-warning">Modifier</a>
+    <form method="post" action="{{ path('app_power_delete', {id: power.id}) }}" style="display:inline-block;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ power.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+    </form>
+    <a href="{{ path('app_power_index') }}" class="btn btn-primary">Retour à la liste</a>
+{% endblock %}

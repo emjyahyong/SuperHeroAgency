@@ -11,209 +11,313 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <style>
-    /* Styles généraux */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f6f9; /* Fond légèrement gris-bleu clair */
-        color: #333; /* Texte sombre pour un bon contraste */
-    }
+   /* Styles généraux */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9; /* Fond gris-bleu clair */
+    color: #333; /* Texte sombre pour un bon contraste */
+}
 
-    header {
-        background-color: #007BFF; /* Bleu vif pour la barre de navigation */
-        padding: 1rem 2rem;
-        border-bottom: 4px solid #28a745; /* Bordure verte douce pour contraste */
-    }
+header {
+    background-color: #007BFF; /* Bleu vif pour la barre de navigation */
+    padding: 1rem 2rem;
+    border-bottom: 4px solid #28a745; /* Bordure verte douce pour contraste */
+}
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: #fff; /* Blanc pour le logo */
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    color: #fff; /* Blanc pour les liens */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #28a745; /* Vert pour le survol */
+}
+
+main {
+    padding: 2rem;
+}
+
+/* Styles pour les boutons */
+.btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff; /* Bordure pour un meilleur contraste */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    border: 1px solid #ffc107;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* Section Hero */
+.hero-section {
+    background: linear-gradient(135deg, #f4f6f9 30%, #007bff 100%); /* Dégradé subtil */
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    text-align: center;
+}
+
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.85); /* Fond translucide */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #007bff; /* Bleu vif pour le titre */
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.cta-button {
+    background-color: #28a745; /* Vert pour le CTA */
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: #218838;
+}
+
+footer {
+    background-color: #007bff; /* Bleu vif pour le pied de page */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+footer p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Amélioration du formulaire */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Bordure bleue sur focus */
+    outline: none;
+}
+
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table td {
+    color: #555;
+}
+
+/* Animation d'entrée pour la table */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.table {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Modifications des titres */
+h1, h2, h3, h4, h5 {
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Section des fonctionnalités */
+.features-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem 0;
+    background-color: #f4f6f9; /* Fond clair pour la section */
+    text-align: center;
+}
+
+.feature {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: translateY(-5px); /* Légère élévation lors du survol */
+}
+
+.feature h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #007bff; /* Titre en bleu vif */
+}
+
+.feature p {
+    font-size: 1.1rem;
+    color: #555; /* Texte gris clair */
+    line-height: 1.5;
+}
+
+.features-section .feature:first-child {
+    background-color: #e7f5ff; /* Fond bleu clair pour la première fonctionnalité */
+}
+
+.features-section .feature:nth-child(2) {
+    background-color: #f9f9f9; /* Fond gris clair pour la deuxième fonctionnalité */
+}
+
+.features-section .feature:last-child {
+    background-color: #eaf7e1; /* Fond vert clair pour la troisième fonctionnalité */
+}
+
+/* Réduction des espacements pour petits écrans */
+@media (max-width: 768px) {
+    .features-section {
+        flex-direction: column;
         align-items: center;
     }
 
-    .logo a {
-        color: #fff; /* Blanc pour le logo */
-        font-size: 2rem;
-        font-weight: bold;
-        text-decoration: none;
-        letter-spacing: 2px;
-    }
-
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    .nav-links li a {
-        color: #fff; /* Blanc pour les liens */
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links li a:hover {
-        color: #28a745; /* Vert pour le survol */
-    }
-
-    main {
-        padding: 2rem;
-    }
-
-    /* Styles pour les boutons */
-    .btn {
-        padding: 0.5rem 1.2rem;
-        font-size: 1rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 0.25rem;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
-    .btn-success {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .btn-success:hover {
-        background-color: #218838;
-    }
-
-    .btn-warning {
-        background-color: #ffc107;
-        color: black;
-    }
-
-    .btn-warning:hover {
-        background-color: #e0a800;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    .btn-danger:hover {
-        background-color: #c82333;
-    }
-
-    .btn-sm {
-        padding: 0.25rem 0.75rem;
-        font-size: 0.875rem;
-    }
-
-    /* Section Hero */
-    .hero-section {
-        background: linear-gradient(135deg, #f4f6f9 30%, #007bff 100%); /* Dégradé subtil */
-        height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-        text-align: center;
-    }
-
-    .hero-content {
-        background-color: rgba(255, 255, 255, 0.85); /* Fond translucide */
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .hero-content h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        color: #007bff; /* Bleu vif pour le titre */
-    }
-
-    .hero-content p {
-        font-size: 1.5rem;
+    .feature {
         margin-bottom: 2rem;
-        color: #333;
-    }
-
-    .cta-button {
-        background-color: #28a745; /* Vert pour le CTA */
-        padding: 0.75rem 1.5rem;
-        color: white;
-        text-transform: uppercase;
-        font-weight: bold;
-        border-radius: 30px;
-        transition: background-color 0.3s ease;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .cta-button:hover {
-        background-color: #218838;
-    }
-
-    footer {
-        background-color: #007bff; /* Bleu vif pour le pied de page */
-        color: white;
-        text-align: center;
-        padding: 1rem;
-        margin-top: 3rem;
-    }
-
-    footer p {
-        font-size: 1rem;
-        margin: 0;
-    }
-
-    /* Amélioration du formulaire */
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-control {
         width: 100%;
-        padding: 0.75rem;
-        font-size: 1rem;
-        border-radius: 0.25rem;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
     }
+}
 
-    .form-check-input {
-        margin-right: 0.5rem;
-    }
-
-    /* Table styles */
-    .table {
-        width: 100%;
-        margin-top: 2rem;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .table th {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .table td {
-        color: #555;
-    }
 
 </style>
 
@@ -226,6 +330,7 @@
             <ul class="nav-links">
                 <li><a href="{{ path('home') }}">Accueil</a></li>
                 <li><a href="{{ path('app_super_hero_index') }}">Super Héros</a></li>
+                <li><a href="{{ path('app_power_index') }}">Pouvoirs</a></li>
                 <li><a href="#">Équipes</a></li>
                 <li><a href="#">Missions</a></li>
             </ul>

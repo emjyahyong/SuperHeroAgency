@@ -15,10 +15,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SuperHeroController extends AbstractController
 {
     #[Route('/', name: 'app_super_hero_index', methods: ['GET'])]
-    public function index(SuperHeroRepository $superHeroRepository): Response
+    public function index(SuperHeroRepository $superHeroRepository, Request $request): Response
     {
+        // Récupérer la valeur du filtre 'available' depuis la requête
+        $available = $request->query->get('available');
+
+        // Appliquer le filtre si une valeur est présente
+        if ($available !== null) {
+            $super_heros = $superHeroRepository->findBy(['available' => (bool)$available]);
+        } else {
+            // Sinon, afficher tous les super-héros
+            $super_heros = $superHeroRepository->findAll();
+        }
+
         return $this->render('super_hero/index.html.twig', [
-            'super_heros' => $superHeroRepository->findAll(),
+            'super_heros' => $super_heros,
         ]);
     }
 

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ power.id ? 'Modifier' : 'Créer' }} le pouvoir{% endblock %}
+
+{% block body %}
+    <h1>{{ power.id ? 'Modifier' : 'Créer' }} un pouvoir</h1>
+
+    {{ form_start(form) }}
+
+        <div class="form-group mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.level) }}
+            {{ form_widget(form.level, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.level) }}
+        </div>
+
+        <button class="btn btn-success">{{ power.id ? 'Mettre à jour' : 'Créer' }}</button>
+
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_power_index') }}" class="btn btn-primary mt-3">Retour à la liste</a>
+{% endblock %}

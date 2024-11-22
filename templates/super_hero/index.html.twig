@@ -7,6 +7,22 @@
 
     <a href="{{ path('app_super_hero_new') }}" class="btn btn-primary mb-3">Créer un Super Héro</a>
 
+    {# Formulaire de filtrage #}
+    <form method="get" action="{{ path('app_super_hero_index') }}" class="mb-3">
+        <div class="form-row">
+            <div class="col">
+                <select name="available" class="form-control">
+                    <option value="">Filtrer par disponibilité</option>
+                    <option value="1" {{ app.request.query.get('available') == '1' ? 'selected' : '' }}>Disponible</option>
+                    <option value="0" {{ app.request.query.get('available') == '0' ? 'selected' : '' }}>Indisponible</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary">Filtrer</button>
+            </div>
+        </div>
+    </form>
+
     <table class="table table-striped">
         <thead>
             <tr>
