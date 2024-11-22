@@ -1,17 +1,193 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Agence des Super Héros{% endblock %}</title>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<style>
+    /* Styles généraux */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #F7F9F9; /* Blanc cassé */
+        color: #333333; /* Gris foncé */
+    }
+
+    header {
+        background-color: #4A90E2; /* Bleu-gris doux */
+        padding: 1rem 2rem;
+        border-bottom: 3px solid #7ED321; /* Bordure verte douce pour contraste */
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo a {
+        color: #F7F9F9; /* Blanc cassé */
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
+        letter-spacing: 1.5px;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .nav-links li a {
+        color: #F7F9F9; /* Blanc cassé */
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: #7ED321; /* Vert doux pour hover */
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #F7F9F9 30%, #4A90E2 100%); /* Dégradé subtil blanc vers bleu-gris */
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333333; /* Gris foncé pour un bon contraste */
+        text-align: center;
+        border-bottom: 3px solid #7ED321; /* Bordure verte douce */
+    }
+
+    .hero-section .hero-content {
+        background-color: rgba(255, 255, 255, 0.8); /* Fond translucide blanc pour contraster */
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Ombre légère et propre */
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #4A90E2; /* Bleu-gris doux pour le titre */
+        letter-spacing: 2px;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #333333; /* Texte principal en gris foncé */
+    }
+
+    .cta-button {
+        background-color: #7ED321; /* Vert doux pour les boutons */
+        padding: 0.75rem 1.5rem;
+        color: #FFFFFF; /* Blanc pour le texte du bouton */
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Légère ombre pour le bouton */
+    }
+
+    .cta-button:hover {
+        background-color: #66BB6A; /* Vert un peu plus foncé pour l'effet hover */
+    }
+
+    /* Features Section */
+    .features-section {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 3rem;
+        padding: 2rem 0;
+    }
+
+    .feature {
+        text-align: center;
+        max-width: 300px;
+        padding: 1.5rem;
+        background-color: #FFFFFF; /* Fond blanc épuré */
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05); /* Ombre légère pour un effet propre */
+        transition: transform 0.3s;
+    }
+
+    .feature:hover {
+        transform: translateY(-10px); /* Légère élévation au hover */
+    }
+
+    .feature h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        color: #4A90E2; /* Bleu-gris doux pour les titres */
+        text-transform: uppercase;
+    }
+
+    .feature p {
+        font-size: 1.2rem;
+        color: #333333; /* Gris foncé pour le texte */
+    }
+
+    /* Footer */
+    footer {
+        background-color: #4A90E2; /* Bleu-gris doux */
+        color: #FFFFFF;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 3rem;
+        border-top: 3px solid #7ED321; /* Bordure verte douce */
+    }
+
+    footer p {
+        margin: 0;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    /* Transitions douces pour les liens et boutons */
+    a, .cta-button {
+        transition: all 0.3s ease;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{{ path('home') }}">SuperHero Agency</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="#">Super Héros</a></li>
+                <li><a href="#">Équipes</a></li>
+                <li><a href="#">Pouvoirs</a></li>
+                <li><a href="#">Missions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} SuperHero Agency - Tous droits réservés.</p>
+    </footer>
+
+    {% block javascripts %}{% endblock %}
+</body>
 </html>
