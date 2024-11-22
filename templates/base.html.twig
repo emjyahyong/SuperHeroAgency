@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Agence des Super Héros{% endblock %}</title>
 
+    <!-- Lien vers la feuille de style principale -->
     <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
@@ -15,14 +16,14 @@
         margin: 0;
         padding: 0;
         font-family: 'Arial', sans-serif;
-        background-color: #F7F9F9; /* Blanc cassé */
-        color: #333333; /* Gris foncé */
+        background-color: #f4f6f9; /* Fond légèrement gris-bleu clair */
+        color: #333; /* Texte sombre pour un bon contraste */
     }
 
     header {
-        background-color: #4A90E2; /* Bleu-gris doux */
+        background-color: #007BFF; /* Bleu vif pour la barre de navigation */
         padding: 1rem 2rem;
-        border-bottom: 3px solid #7ED321; /* Bordure verte douce pour contraste */
+        border-bottom: 4px solid #28a745; /* Bordure verte douce pour contraste */
     }
 
     .navbar {
@@ -32,11 +33,11 @@
     }
 
     .logo a {
-        color: #F7F9F9; /* Blanc cassé */
+        color: #fff; /* Blanc pour le logo */
         font-size: 2rem;
         font-weight: bold;
         text-decoration: none;
-        letter-spacing: 1.5px;
+        letter-spacing: 2px;
     }
 
     .nav-links {
@@ -46,122 +47,174 @@
     }
 
     .nav-links li a {
-        color: #F7F9F9; /* Blanc cassé */
+        color: #fff; /* Blanc pour les liens */
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
         transition: color 0.3s ease;
     }
 
     .nav-links li a:hover {
-        color: #7ED321; /* Vert doux pour hover */
+        color: #28a745; /* Vert pour le survol */
     }
 
     main {
         padding: 2rem;
     }
 
-    /* Hero Section */
+    /* Styles pour les boutons */
+    .btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: black;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    /* Section Hero */
     .hero-section {
-        background: linear-gradient(135deg, #F7F9F9 30%, #4A90E2 100%); /* Dégradé subtil blanc vers bleu-gris */
+        background: linear-gradient(135deg, #f4f6f9 30%, #007bff 100%); /* Dégradé subtil */
         height: 70vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #333333; /* Gris foncé pour un bon contraste */
+        color: #333;
         text-align: center;
-        border-bottom: 3px solid #7ED321; /* Bordure verte douce */
     }
 
-    .hero-section .hero-content {
-        background-color: rgba(255, 255, 255, 0.8); /* Fond translucide blanc pour contraster */
+    .hero-content {
+        background-color: rgba(255, 255, 255, 0.85); /* Fond translucide */
         padding: 2rem;
         border-radius: 10px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Ombre légère et propre */
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
     }
 
     .hero-content h1 {
         font-size: 3.5rem;
         margin-bottom: 1rem;
-        color: #4A90E2; /* Bleu-gris doux pour le titre */
-        letter-spacing: 2px;
+        color: #007bff; /* Bleu vif pour le titre */
     }
 
     .hero-content p {
         font-size: 1.5rem;
         margin-bottom: 2rem;
-        color: #333333; /* Texte principal en gris foncé */
+        color: #333;
     }
 
     .cta-button {
-        background-color: #7ED321; /* Vert doux pour les boutons */
+        background-color: #28a745; /* Vert pour le CTA */
         padding: 0.75rem 1.5rem;
-        color: #FFFFFF; /* Blanc pour le texte du bouton */
+        color: white;
         text-transform: uppercase;
-        text-decoration: none;
         font-weight: bold;
         border-radius: 30px;
         transition: background-color 0.3s ease;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Légère ombre pour le bouton */
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     }
 
     .cta-button:hover {
-        background-color: #66BB6A; /* Vert un peu plus foncé pour l'effet hover */
+        background-color: #218838;
     }
 
-    /* Features Section */
-    .features-section {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 3rem;
-        padding: 2rem 0;
-    }
-
-    .feature {
-        text-align: center;
-        max-width: 300px;
-        padding: 1.5rem;
-        background-color: #FFFFFF; /* Fond blanc épuré */
-        border-radius: 10px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05); /* Ombre légère pour un effet propre */
-        transition: transform 0.3s;
-    }
-
-    .feature:hover {
-        transform: translateY(-10px); /* Légère élévation au hover */
-    }
-
-    .feature h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1rem;
-        color: #4A90E2; /* Bleu-gris doux pour les titres */
-        text-transform: uppercase;
-    }
-
-    .feature p {
-        font-size: 1.2rem;
-        color: #333333; /* Gris foncé pour le texte */
-    }
-
-    /* Footer */
     footer {
-        background-color: #4A90E2; /* Bleu-gris doux */
-        color: #FFFFFF;
+        background-color: #007bff; /* Bleu vif pour le pied de page */
+        color: white;
         text-align: center;
         padding: 1rem;
         margin-top: 3rem;
-        border-top: 3px solid #7ED321; /* Bordure verte douce */
     }
 
     footer p {
-        margin: 0;
         font-size: 1rem;
-        letter-spacing: 1px;
+        margin: 0;
     }
 
-    /* Transitions douces pour les liens et boutons */
-    a, .cta-button {
-        transition: all 0.3s ease;
+    /* Amélioration du formulaire */
+    .form-group {
+        margin-bottom: 1.5rem;
     }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .form-check-input {
+        margin-right: 0.5rem;
+    }
+
+    /* Table styles */
+    .table {
+        width: 100%;
+        margin-top: 2rem;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .table td {
+        color: #555;
+    }
+
 </style>
 
 <body>
@@ -172,9 +225,8 @@
             </div>
             <ul class="nav-links">
                 <li><a href="{{ path('home') }}">Accueil</a></li>
-                <li><a href="#">Super Héros</a></li>
+                <li><a href="{{ path('app_super_hero_index') }}">Super Héros</a></li>
                 <li><a href="#">Équipes</a></li>
-                <li><a href="#">Pouvoirs</a></li>
                 <li><a href="#">Missions</a></li>
             </ul>
         </nav>

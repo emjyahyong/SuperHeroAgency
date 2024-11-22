@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouveau Super Héros{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau Super Héros</h1>
+
+    {{ form_start(form) }}
+        <div class="form-group mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.alterEgo) }}
+            {{ form_widget(form.alterEgo, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.alterEgo) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.available) }}
+            {{ form_widget(form.available, {'attr': {'class': 'form-check-input'}}) }}
+            {{ form_errors(form.available) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.energyLevel) }}
+            {{ form_widget(form.energyLevel, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.energyLevel) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.biography) }}
+            {{ form_widget(form.biography, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+            {{ form_errors(form.biography) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.imageName) }}
+            {{ form_widget(form.imageName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.imageName) }}
+        </div>
+
+        <button class="btn btn-success">Créer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_super_hero_index') }}" class="btn btn-primary mt-3">Retour à la liste</a>
+{% endblock %}

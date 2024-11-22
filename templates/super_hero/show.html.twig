@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Super Héros {{ super_hero.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ super_hero.name }}</h1>
+
+    <p><strong>Alter Ego :</strong> {{ super_hero.alterEgo }}</p>
+    <p><strong>Disponible :</strong> {{ super_hero.available ? 'Oui' : 'Non' }}</p>
+    <p><strong>Niveau d'énergie :</strong> {{ super_hero.energyLevel }}</p>
+    <p><strong>Biographie :</strong> {{ super_hero.biography }}</p>
+    <p><strong>Image :</strong> {{ super_hero.imageName }}</p>
+
+    <a href="{{ path('app_super_hero_edit', {id: super_hero.id}) }}" class="btn btn-warning">Modifier</a>
+    <a href="{{ path('app_super_hero_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+    <form method="post" action="{{ path('app_super_hero_delete', {id: super_hero.id}) }}" style="display:inline-block;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ super_hero.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+    </form>
+{% endblock %}
